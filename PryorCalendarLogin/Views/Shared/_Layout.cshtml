@@ -10,20 +10,40 @@
     <script src="~/Scripts/jquery.calendar-widget.js"></script>
 </head>
 <body>
-
-    <div style="width: auto; background-color:red; font-size: 33px; font-weight:700;">
-        @if (Request.IsAuthenticated) {
-            <strong>@Html.Encode(User.Identity.Name)</strong>
-            @Html.ActionLink("Log Out", "LogOut", "User")
-                                        }
-        else {
-            @Html.ActionLink("Registration", "Registration", "User")
-            <span>|</span>
-            @Html.ActionLink("Log In", "LogIn", "User")
-        }
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <img src="~/Images/14629591-funny-donkey-head-cartoon.jpg" />
+                <p class="site-title">@Html.ActionLink("Kick-Ass Calendar", "Index", "Home")</p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                @if (Request.IsAuthenticated) {
+                    <strong id="user_name">@Html.Encode(User.Identity.Name)</strong>
+                    @Html.ActionLink("Log Out", "LogOut", "User")
+                }
+                else {
+                    @Html.ActionLink("Registration", "Registration", "User")
+                    <span>|</span>
+                    @Html.ActionLink("Log In", "LogIn", "User")
+                }
+                </section>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
     </div>
-
-    @RenderBody()
+    <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>CIS 411, University of Louisville, Spring 2013</p>
+                </div>
+            </div>
+    </footer>
     @RenderSection("scripts", required: false)
 </body>
 </html>
