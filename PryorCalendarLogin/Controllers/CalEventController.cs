@@ -18,7 +18,6 @@ namespace PryorCalendarLogin.Controllers
 
         public ActionResult Index()
         {
-<<<<<<< HEAD
             if (Request.IsAuthenticated)
             {
                 var cal_event = from c in db.Cal_Event
@@ -31,14 +30,8 @@ namespace PryorCalendarLogin.Controllers
             {
                 return Redirect("User/LogIn");
             }
-=======
-            var cal_event = from c in db.Cal_Event
-                             where c.User.User_Name == User.Identity.Name
-                             select c;
-
-            return View(cal_event.ToList());
->>>>>>> Bunch of stuff changed; filtering by date and user.
         }
+
 
         //
         // GET: /CalEvent/OnDate/2013-04-23
