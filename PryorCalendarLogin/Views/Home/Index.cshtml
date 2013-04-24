@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Kick-Ass Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var now = new Date();                   //date variable for below
+    var currentMonth = now.getMonth();      //the current month
+    var currentYear = now.getYear() + 1900; //the current year
+
+    //generates calendar using jquery.calendar-widget.js
+    $(document).ready(function () {
+        $("#calendar").calendarWidget({
+            month: currentMonth,
+            year: currentYear
+        });
+    })
+
+    function changeMonth(increment) {
+        //change the month forward or backwards
+        currentMonth += increment;
+        
+        //for changing years
+        if (currentMonth < 0) {
+            currentYear -= 1;
+            currentMonth = 11;
+        }
+        if (currentMonth > 11) {
+            currentYear += 1;
+            currentMonth = 0;
+        }
+
+        //render the calendar again
+        $("#calendar").calendarWidget({
+            month: currentMonth,
+            year: currentYear
+        });
+    }
+</script>
+
+<h2>Index</h2>
+
+<div id="calendar">
+    @*empty because it contains the calendar generated above*@
+</div>
+<button class="calButton" onclick="changeMonth(-1)"> < </button>
+<button class="calButton" onclick="changeMonth(1)"> > </button>
+
+<div style ="font-size:22px;">
+    <br />
+<a href = "http://localhost:5092/CalEvent">View All Events For Current User</a>
+</div>

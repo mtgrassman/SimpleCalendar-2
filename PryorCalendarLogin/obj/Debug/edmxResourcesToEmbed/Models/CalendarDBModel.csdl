@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CalendarDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CalendarDBEntities2" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Cal_Event" EntityType="CalendarDBModel.Cal_Event" />
+    <EntitySet Name="sysdiagrams" EntityType="CalendarDBModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="CalendarDBModel.User" />
+    <AssociationSet Name="FK_Cal_Event_User" Association="CalendarDBModel.FK_Cal_Event_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Cal_Event" EntitySet="Cal_Event" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cal_Event">
+    <Key>
+      <PropertyRef Name="Event_ID" />
+    </Key>
+    <Property Name="Event_ID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="User_ID" Type="Guid" Nullable="false" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Event_Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="User" Relationship="CalendarDBModel.FK_Cal_Event_User" FromRole="Cal_Event" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Guid" Nullable="false" />
+    <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Phone_Num" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Cal_Event" Relationship="CalendarDBModel.FK_Cal_Event_User" FromRole="User" ToRole="Cal_Event" />
+  </EntityType>
+  <Association Name="FK_Cal_Event_User">
+    <End Role="User" Type="CalendarDBModel.User" Multiplicity="1" />
+    <End Role="Cal_Event" Type="CalendarDBModel.Cal_Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Cal_Event">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

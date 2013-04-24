@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PryorCalendarLogin.Models.Cal_Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.User_Name)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.User_Name)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Event_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Event_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Event_ID })
+        </td>
+    </tr>
+}
+
+</table>
+
