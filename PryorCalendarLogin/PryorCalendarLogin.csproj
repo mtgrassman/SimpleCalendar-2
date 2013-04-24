@@ -219,6 +219,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CalendarDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\14629591-funny-donkey-head-cartoon.jpg" />
     <Content Include="Models\CalendarDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CalendarDBModel.edmx</DependentUpon>
@@ -270,7 +271,6 @@
     <Content Include="Views\CalEvent\Create.cshtml" />
     <Content Include="Views\CalEvent\Edit.cshtml" />
     <Content Include="Views\CalEvent\Delete.cshtml" />
-    <Content Include="Views\CalEvent\OnDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

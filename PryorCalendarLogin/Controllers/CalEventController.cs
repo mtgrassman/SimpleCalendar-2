@@ -32,20 +32,6 @@ namespace PryorCalendarLogin.Controllers
             }
         }
 
-
-        //
-        // GET: /CalEvent/OnDate/2013-04-23
-
-        public ActionResult OnDate(DateTime date)
-        {
-            var cal_event = from c in db.Cal_Event
-                            where c.User.User_Name == User.Identity.Name && c.Date == date
-                            select c;
-
-            return View(cal_event.ToList());
-        }
-
-
         //
         // GET: /CalEvent/Details/5
 
